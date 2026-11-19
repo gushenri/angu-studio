@@ -1,0 +1,52 @@
+{
+  // Aqui eu configuro como o TypeScript verifica o código e reconhece os recursos do projeto.
+  "compilerOptions": {
+    // Aqui eu defino a versão de JavaScript usada como referência de compilação.
+    "target": "ES2017",
+    // Aqui eu disponibilizo os tipos do navegador e das APIs modernas de JavaScript.
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    // Aqui eu evito verificar internamente os arquivos de tipos das dependências.
+    "skipLibCheck": true,
+    // Aqui eu ativo verificações rigorosas para encontrar incompatibilidades de tipos.
+    "strict": true,
+    // Aqui eu deixo a geração dos arquivos finais para o Next.js e uso o TypeScript para verificar tipos.
+    "noEmit": true,
+    // Aqui eu facilito a importação de bibliotecas que usam formatos diferentes de módulos.
+    "esModuleInterop": true,
+    // Aqui eu preservo os módulos modernos para o empacotador do Next.js processar.
+    "module": "esnext",
+    // Aqui eu resolvo os caminhos de importação seguindo as regras de um empacotador.
+    "moduleResolution": "bundler",
+    // Aqui eu exijo que cada arquivo possa ser processado de forma independente.
+    "isolatedModules": true,
+    // Aqui eu preservo o JSX para o Next.js transformar os componentes React.
+    "jsx": "preserve",
+    // Aqui eu reutilizo informações de verificações anteriores para acelerar as próximas.
+    "incremental": true,
+    // Aqui eu integro as verificações específicas do Next.js ao TypeScript.
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    // Aqui eu permito incluir arquivos JavaScript no projeto TypeScript.
+    "allowJs": true,
+    // Aqui eu permito importar arquivos JSON como dados tipados.
+    "resolveJsonModule": true
+  },
+  // Aqui eu seleciono os arquivos do projeto e os tipos gerados pelo Next.js para a verificação.
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  // Aqui eu evito incluir os arquivos internos das dependências como código do projeto.
+  "exclude": [
+    "node_modules"
+  ]
+}

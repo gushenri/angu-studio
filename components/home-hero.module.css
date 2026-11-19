@@ -1,0 +1,218 @@
+/* Aqui eu defino o espaçamento, o tamanho do botão e a grade da abertura, começando pela composição de celular. */
+.hero {
+  --hero-gap: clamp(0.35rem, 0.85vw, 0.75rem);
+  --action-size: clamp(5.5rem, 9vw, 8rem);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  isolation: isolate;
+  gap: var(--hero-gap);
+  width: min(100%, 100rem);
+  margin-inline: auto;
+  padding: var(--hero-gap);
+}
+
+/* Aqui eu compartilho o recorte e os cantos arredondados da foto e do bloco de texto. */
+.photo,
+.editorial {
+  position: relative;
+  overflow: hidden;
+  border-radius: clamp(24px, 3vw, 40px);
+}
+
+/* Aqui eu reservo altura para a foto e uso marinho como fundo enquanto ela carrega. */
+.photo {
+  min-height: clamp(25rem, 120vw, 40rem);
+  background: var(--marinho);
+}
+
+/* Aqui eu preencho a área da foto e ajusto seu enquadramento sem deformar a imagem. */
+.photo img {
+  object-fit: cover;
+  object-position: 50% 10%;
+}
+
+/* Aqui eu coloco o texto antes da foto no celular, sobre uma superfície azul. */
+.editorial {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 19rem;
+  padding: clamp(1.5rem, 5vw, 5.5rem);
+  padding-bottom: 3.5rem;
+  background: var(--azul);
+  color: var(--off-white);
+}
+
+/* Aqui eu estilizo a pequena identificação da abertura em caixa-alta. */
+.kicker {
+  position: relative;
+  margin-bottom: 1.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* Aqui eu destaco o título com letras grandes, linhas próximas e tamanho adaptável. */
+.title {
+  position: relative;
+  /* Aqui eu separo as linhas do título para que o acento de mãos não encoste em Muitas. */
+  display: grid;
+  row-gap: 0.08em;
+  font-size: clamp(2.9rem, 15vw, 7.2rem);
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+/* Aqui eu faço cada trecho do título ocupar sua própria linha. */
+.title > span {
+  display: block;
+}
+
+/* Aqui eu uso amarelo apenas no ponto final do título. */
+.period {
+  color: var(--sol);
+}
+
+/* Aqui eu limito a largura do texto de apoio e o separo do título. */
+.copy {
+  position: relative;
+  max-width: 23ch;
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 1.55vw, 1.3rem);
+  line-height: 1.2;
+}
+
+/* Aqui eu posiciono e inclino o grafismo decorativo no canto do bloco editorial. */
+.sticker {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  width: clamp(4rem, 11vw, 9rem);
+  height: auto;
+  transform: rotate(-13deg);
+}
+
+/* Aqui eu sobreponho o acesso à coleção na junção dos blocos da abertura. */
+.action {
+  position: absolute;
+  z-index: 1;
+  grid-row: 2;
+  top: calc(var(--hero-gap) / -2);
+  right: clamp(2.5rem, 7vw, 3.5rem);
+  display: grid;
+  width: var(--action-size);
+  aspect-ratio: 1;
+  place-items: center;
+  transform: translateY(-50%) rotate(-9deg);
+}
+
+/* Aqui eu crio o botão circular amarelo com texto grafite centralizado. */
+.collection {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-content: center;
+  gap: 0.2rem;
+  border-radius: 50%;
+  background: var(--sol);
+  color: var(--grafite);
+  font-size: clamp(0.85rem, 1.35vw, 1.15rem);
+  font-weight: 700;
+  line-height: 0.96;
+  text-align: center;
+}
+
+/* Aqui eu afasto o contorno de foco para destacá-lo ao redor do botão. */
+.collection:focus-visible {
+  outline-color: var(--sol);
+  outline-offset: 0.85rem;
+}
+
+/* Aqui eu ajusto o tamanho da seta em relação ao texto do botão. */
+.arrow {
+  font-size: 1.15em;
+}
+
+/* Aqui eu posiciono o contorno orgânico ao redor do botão sem bloquear cliques. */
+.action :global(.hero-ring) {
+  position: absolute;
+  inset: -0.95rem;
+  width: calc(100% + 1.9rem);
+  height: calc(100% + 1.9rem);
+  overflow: visible;
+  color: var(--sol);
+  pointer-events: none;
+  transform: rotate(-13deg);
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (prefers-reduced-motion: no-preference). */
+@media (prefers-reduced-motion: no-preference) {
+  /* Aqui eu animo o aparecimento do traço normalizado do contorno quando o movimento está permitido. */
+  .action :global(.hero-ring) path {
+    stroke-dasharray: 1;
+    animation: draw-ring 750ms 150ms ease-out both;
+  }
+
+  /* Aqui eu suavizo a rotação do grafismo decorativo. */
+  .sticker {
+    transition: transform 250ms ease-out;
+  }
+
+  /* Aqui eu mudo a inclinação do grafismo ao passar o ponteiro. */
+  .sticker:hover {
+    transform: rotate(6deg);
+  }
+}
+
+/* Aqui eu descrevo as etapas da animação draw-ring, usada pelos elementos acima. */
+@keyframes draw-ring {
+  /* Aqui eu inicio o contorno com todo o traço deslocado, deixando o desenho oculto. */
+  from { stroke-dashoffset: 1; }
+  /* Aqui eu revelo o contorno completo ao finalizar a animação. */
+  to { stroke-dashoffset: 0; }
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (min-width: 900px). */
+@media (min-width: 900px) {
+  /* Aqui eu mudo a abertura para duas colunas e ajusto sua altura em telas a partir de 900 pixels. */
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
+    min-height: clamp(35rem, calc(100svh - 6rem), 52rem);
+  }
+
+  /* Aqui eu deixo a grade determinar a altura da foto na composição de duas colunas. */
+  .photo {
+    min-height: 0;
+  }
+
+  /* Aqui eu reajusto o enquadramento da foto para o formato de tela maior. */
+  .photo img {
+    object-position: 50% 20%;
+  }
+
+  /* Aqui eu devolvo o texto à ordem natural da grade e ajusto seu espaçamento interno. */
+  .editorial {
+    grid-row: auto;
+    padding: 3.5rem clamp(3.75rem, 6vw, 7.5rem);
+  }
+
+  /* Aqui eu amplio o título de acordo com a largura disponível na composição de duas colunas. */
+  .title {
+    font-size: clamp(3.8rem, 9vw, 9.3rem);
+  }
+
+  /* Aqui eu reposiciono o botão na divisão entre as colunas de foto e texto. */
+  .action {
+    grid-row: 1;
+    grid-column: 2;
+    inset: 67% auto auto calc(var(--hero-gap) / -2);
+    transform: translate(-50%, -50%) rotate(-9deg);
+  }
+}

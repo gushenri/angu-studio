@@ -1,0 +1,24 @@
+# Aqui eu deixo as dependências instaladas fora do versionamento.
+/node_modules/
+# Aqui eu ignoro os arquivos gerados pelo Next.js e por uma eventual exportação estática.
+/.next/
+/out/
+# Aqui eu ignoro os tipos gerados pelo Next.js e o cache de verificação do TypeScript.
+next-env.d.ts
+*.tsbuildinfo
+# Aqui eu ignoro os metadados de pastas criados pelo macOS.
+.DS_Store
+
+# Aqui eu mantenho credenciais e configurações locais fora do repositório público.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.log
+
+# Aqui eu preservo os arquivos de pesquisa no computador e publico apenas os assets usados pelo site.
+/ImgTratada/
+/imgSemTratamento/
+/anzu_elementos_graficos/
+/*.pdf

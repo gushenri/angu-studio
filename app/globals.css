@@ -1,0 +1,1339 @@
+/* Aqui eu carrego o Tailwind para disponibilizar seus estilos e classes utilitárias. */
+@import "tailwindcss";
+
+/* Aqui eu centralizo as cinco cores da marca para reutilizar a mesma paleta em todo o site. */
+:root {
+  --azul: #022e99;
+  --marinho: #03235e;
+  --grafite: #292929;
+  --off-white: #f5f4f0;
+  --sol: #ffd23f;
+}
+
+/* Aqui eu conecto as cores e fontes da marca às classes utilitárias do Tailwind. */
+@theme inline {
+  --color-azul: var(--azul);
+  --color-marinho: var(--marinho);
+  --color-grafite: var(--grafite);
+  --color-off-white: var(--off-white);
+  --color-sol: var(--sol);
+  --font-sans: var(--font-outfit), sans-serif;
+  --font-script: var(--font-kaushan), cursive;
+}
+
+/* Aqui eu defino o fundo, a cor e a fonte padrão, com altura mínima igual à área visível da tela. */
+body {
+  min-height: 100dvh;
+  margin: 0;
+  background: var(--off-white);
+  color: var(--marinho);
+  font-family: var(--font-sans);
+}
+
+/* Aqui eu uso o cursor de ação para indicar que os botões podem ser clicados. */
+button {
+  cursor: pointer;
+}
+
+/* Aqui eu destaco o elemento que recebe foco na navegação pelo teclado. */
+:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 4px;
+}
+
+/* Aqui eu preparo o atalho para o conteúdo e o mantenho fora da tela até receber foco. */
+.skip-link {
+  position: fixed;
+  z-index: 10;
+  inset: 1rem auto auto 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 24px;
+  background: var(--sol);
+  color: var(--grafite);
+  transform: translateY(-200%);
+}
+
+/* Aqui eu trago o atalho para dentro da tela quando a pessoa chega até ele pelo teclado. */
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Aqui eu alinho a assinatura e o menu nas extremidades do cabeçalho. */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 6rem;
+  padding: 1rem clamp(1.25rem, 5vw, 5rem);
+  border-bottom: 1px solid color-mix(in srgb, var(--marinho) 15%, transparent);
+}
+
+/* Aqui eu mantenho os atalhos e o menu alinhados no topo, com espaço suficiente no celular. */
+.header-actions,
+.header-shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Aqui eu garanto uma área de toque de 44 pixels para cada ícone do cabeçalho. */
+.header-shortcut {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 24px;
+  color: var(--marinho);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Aqui eu mostro a quantidade de peças salvas sem aumentar a largura do cabeçalho no celular. */
+.favorites-count {
+  position: absolute;
+  top: -0.1rem;
+  right: -0.1rem;
+  display: grid;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 0.2rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--azul);
+  color: var(--off-white);
+  font-size: 0.6rem;
+  letter-spacing: 0;
+}
+
+/* Aqui eu deixo os cartões como referência para o coração, sem colocá-lo dentro do link da peça. */
+.product-card {
+  position: relative;
+}
+.product-card > .favorite-button {
+  position: absolute;
+  z-index: 1;
+  top: 0.85rem;
+  right: 0.85rem;
+}
+
+/* Aqui eu padronizo o controle de favoritos com nome acessível, contraste e área confortável de toque. */
+.favorite-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--marinho);
+  border-radius: 24px;
+  background: var(--off-white);
+  color: var(--marinho);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.favorite-button-compact {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  flex-shrink: 0;
+}
+.favorite-button[aria-pressed="true"] {
+  background: var(--azul);
+  color: var(--off-white);
+}
+.favorite-button[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+.favorite-button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+.favorite-button:active {
+  transform: scale(0.97);
+}
+
+/* Aqui eu acrescento uma foto aos resultados e reservo o restante da linha para o nome da peça. */
+.header-result-photo {
+  width: 64px;
+  height: 76px;
+  flex: 0 0 64px;
+  border-radius: 16px;
+}
+.header-result-caption {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Aqui eu organizo a lista salva com acesso à peça e um botão independente para removê-la. */
+.saved-products li,
+.saved-products a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+.saved-products li {
+  justify-content: space-between;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--marinho) 18%, transparent);
+}
+.saved-products a {
+  flex: 1;
+}
+.saved-products small {
+  display: block;
+  margin-top: 0.15rem;
+}
+
+/* Aqui eu preparo o formulário de entrada demonstrativo com rótulos e campos legíveis no celular. */
+.demo-login {
+  display: grid;
+  gap: 0.6rem;
+}
+.demo-login h3 {
+  font-size: 1.5rem;
+  font-weight: 650;
+}
+.demo-login > p:first-of-type {
+  margin-bottom: 0.75rem;
+  max-width: 36ch;
+}
+.demo-login label {
+  font-weight: 600;
+}
+.demo-login input {
+  width: 100%;
+  min-height: 48px;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--marinho);
+  border-radius: 24px;
+  font-size: 1rem;
+}
+.demo-login .action-button {
+  margin-top: 0.75rem;
+}
+.login-demo-status {
+  min-height: 3em;
+}
+
+/* Aqui eu separo os detalhes técnicos das ações e evito que a tabela alargue a coluna da peça. */
+.product-info {
+  min-width: 0;
+}
+.product-info > .favorite-button {
+  margin-top: 1rem;
+}
+.product-specs {
+  margin-top: 2rem;
+}
+.product-specs > h2 {
+  margin-bottom: 0.75rem;
+}
+.product-specs details {
+  border-bottom: 1px solid color-mix(in srgb, var(--marinho) 25%, transparent);
+}
+
+/* Aqui eu uso o controle nativo de expansão, que funciona com teclado mesmo sem JavaScript. */
+.product-specs summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  gap: 1rem;
+  padding-block: 0.75rem;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.product-specs summary::-webkit-details-marker {
+  display: none;
+}
+.product-specs summary span {
+  font-size: 1.4rem;
+}
+.product-specs details[open] summary span {
+  transform: rotate(45deg);
+}
+.product-specs-content {
+  padding-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+.product-specs-content ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.product-specs-content li + li {
+  margin-top: 0.35rem;
+}
+
+/* Aqui eu preservo os títulos das linhas e colunas e permito rolar tabelas maiores por teclado. */
+.measurements-scroll {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+.measurements-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+.measurements-scroll caption {
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+.measurements-scroll th,
+.measurements-scroll td {
+  padding: 0.6rem 0.4rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--marinho) 15%, transparent);
+}
+.measurements-scroll thead {
+  background: color-mix(in srgb, var(--off-white) 92%, var(--marinho));
+}
+
+/* Aqui eu encerro a composição com fundo grafite e foco amarelo sobre a superfície escura. */
+.site-footer {
+  margin-top: 2rem;
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+  background: var(--grafite);
+  color: var(--off-white);
+}
+.site-footer :focus-visible {
+  outline-color: var(--sol);
+}
+.footer-grid {
+  display: grid;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+}
+.footer-brand .wordmark {
+  color: var(--off-white);
+}
+.footer-brand p {
+  margin-top: 1.25rem;
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+.site-footer nav .eyebrow {
+  margin-bottom: 0.75rem;
+}
+.site-footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.footer-contact .text-link {
+  margin-block: 0.75rem;
+}
+.footer-contact > p:last-child {
+  font-size: 0.85rem;
+}
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--off-white) 20%, transparent);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Aqui eu coloco meu crédito abaixo da marca no celular e preservo uma área confortável para tocar no link. */
+.footer-developer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  flex-basis: 100%;
+}
+
+/* Aqui eu distribuo o rodapé em três colunas apenas quando há espaço confortável para o conteúdo. */
+@media (min-width: 760px) {
+  .footer-grid {
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    gap: 2rem;
+  }
+  /* Aqui eu alinho o crédito à direita na mesma linha das informações da marca. */
+  .footer-bottom {
+    align-items: center;
+  }
+  .footer-developer {
+    flex-basis: auto;
+    margin-left: auto;
+  }
+}
+
+/* Aqui eu destaco os controles disponíveis sob o ponteiro sem criar hover persistente no celular. */
+@media (hover: hover) and (pointer: fine) {
+  .favorite-button:not(:disabled):hover {
+    border-color: var(--grafite);
+    background: var(--sol);
+    color: var(--grafite);
+  }
+  .site-footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+}
+
+/* Aqui eu economizo espaço no celular mantendo os nomes acessíveis nos próprios botões. */
+.header-shortcut > span {
+  display: none;
+}
+
+/* Aqui eu destaco o atalho que recebe foco ou está com seu painel aberto. */
+.header-shortcut:focus-visible,
+.header-shortcut[aria-expanded="true"] {
+  background: var(--sol);
+  color: var(--grafite);
+}
+
+/* Aqui eu dou uma resposta imediata ao toque sem acrescentar animação à navegação. */
+.header-shortcut:active {
+  transform: scale(0.97);
+}
+
+/* Aqui eu bloqueio a rolagem do fundo enquanto um dos painéis do cabeçalho está aberto. */
+html:has(.header-dialog[open]) {
+  overflow: hidden;
+}
+
+/* Aqui eu uso o diálogo como área de clique externo, deixando a moldura para o painel interno. */
+.header-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 1rem;
+  overflow-y: auto;
+  background: transparent;
+  color: var(--marinho);
+}
+
+/* Aqui eu centralizo o painel somente quando o diálogo está aberto. */
+.header-dialog[open] {
+  display: grid;
+  align-items: start;
+  justify-items: center;
+}
+
+/* Aqui eu escureço a página atrás do painel, acompanhando o tratamento do menu. */
+.header-dialog::backdrop {
+  background: rgb(3 35 94 / 48%);
+}
+
+/* Aqui eu limito a largura do painel e preservo o conteúdo dentro de uma superfície arredondada. */
+.header-dialog-panel {
+  width: min(100%, 36rem);
+  min-width: 0;
+  margin-block: clamp(0rem, 5vh, 4rem);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border-radius: 32px;
+  background: var(--off-white);
+}
+
+/* Aqui eu distribuo a assinatura e o botão de fechar no topo do painel. */
+.header-dialog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Aqui eu adapto o título grande à largura disponível no painel. */
+.header-dialog-title {
+  margin-block: 1.5rem;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  overflow-wrap: anywhere;
+}
+
+/* Aqui eu preparo o campo de busca com tamanho confortável para toque e leitura no celular. */
+.header-search-input {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--marinho);
+  border-radius: 24px;
+  font-size: 1rem;
+}
+
+/* Aqui eu separo as mensagens de apoio dos controles e resultados. */
+.header-dialog-note {
+  margin-block: 1rem;
+}
+
+/* Aqui eu transformo cada resultado em um link com nome, preço e seta. */
+.header-search-results a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 64px;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--marinho) 18%, transparent);
+}
+
+/* Aqui eu mantenho o preço em uma segunda linha e preservo o espaço da seta. */
+.header-search-results small {
+  display: block;
+  margin-top: 0.15rem;
+}
+.header-search-results svg {
+  flex-shrink: 0;
+}
+
+/* Aqui eu organizo o conteúdo provisório de login e favoritos com um convite para conhecer a coleção. */
+.header-dialog-empty {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+}
+.header-dialog-empty > svg {
+  width: 40px;
+  height: 40px;
+  color: var(--azul);
+}
+.header-dialog-empty h3 {
+  font-size: 1.5rem;
+  font-weight: 650;
+  line-height: 1.15;
+}
+.header-dialog-empty p {
+  max-width: 34ch;
+}
+
+/* Aqui eu mostro os nomes dos atalhos quando a tela oferece espaço para eles. */
+@media (min-width: 760px) {
+  .header-actions { gap: 1rem; }
+  .header-shortcut { padding-inline: 0.75rem; }
+  .header-shortcut > span { display: inline; }
+}
+
+/* Aqui eu mantenho os quatro controles na mesma linha até nos celulares mais estreitos. */
+@media (max-width: 389px) {
+  .header-actions > .menu-toggle {
+    justify-content: center;
+    min-width: 44px;
+    padding-inline: 0.5rem;
+  }
+  .header-actions > .menu-toggle > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Aqui eu reservo o destaque de hover para dispositivos que realmente usam ponteiro. */
+@media (hover: hover) and (pointer: fine) {
+  .header-shortcut:hover {
+    background: var(--sol);
+    color: var(--grafite);
+  }
+  .header-search-results a:hover { color: var(--azul); }
+}
+
+/* Aqui eu empilho as duas partes da assinatura e centralizo seu alinhamento. */
+.wordmark {
+  display: inline-grid;
+  justify-items: center;
+  gap: 0.2rem;
+  color: var(--azul);
+}
+
+/* Aqui eu aplico a fonte manuscrita à palavra anzu. */
+.wordmark-script {
+  font-family: var(--font-script);
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+/* Aqui eu ajusto o tamanho e o espaçamento da palavra studio na assinatura. */
+.wordmark-studio {
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+/* Aqui eu padronizo a tipografia pequena em caixa-alta do menu. */
+.menu-toggle,
+.menu-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Aqui eu dou ao botão do menu uma borda arredondada e área mínima de toque de 44 pixels. */
+.menu-toggle {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid currentColor;
+  border-radius: 24px;
+}
+
+/* Aqui eu uso amarelo com grafite para destacar o botão sob o ponteiro ou com foco. */
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  border-color: var(--grafite);
+  background: var(--sol);
+  color: var(--grafite);
+}
+
+/* Aqui eu bloqueio a rolagem do documento enquanto o menu está aberto. */
+html:has(.site-menu[open]) {
+  overflow: hidden;
+}
+
+/* Aqui eu faço o diálogo ocupar a tela inteira sem adicionar um fundo próprio ao redor do painel. */
+.site-menu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  color: var(--off-white);
+}
+
+/* Aqui eu escureço o conteúdo atrás do menu com o fundo nativo do diálogo. */
+.site-menu::backdrop {
+  background: rgb(3 35 94 / 48%);
+}
+
+/* Aqui eu posiciono o painel na lateral direita e permito rolar seu conteúdo em telas menores. */
+.menu-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 32rem);
+  height: 100%;
+  margin-left: auto;
+  padding: clamp(1.25rem, 5vw, 3rem);
+  overflow-y: auto;
+  border-radius: 32px 0 0 32px;
+  background: var(--azul);
+}
+
+/* Aqui eu uso amarelo no contorno de foco para destacá-lo sobre o painel azul. */
+.menu-panel :focus-visible {
+  outline-color: var(--sol);
+}
+
+/* Aqui eu distribuo o espaço em torno da navegação e alinho os links à direita. */
+.menu-nav {
+  margin-block: auto;
+  padding-block: 2rem;
+  text-align: right;
+}
+
+/* Aqui eu destaco os links com letras grandes e espaçamento compacto. */
+.menu-nav li {
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+/* Aqui eu sublinho o link que representa a página ou seção atual. */
+.menu-nav a[aria-current] {
+  text-decoration: underline;
+  text-decoration-color: var(--sol);
+  text-decoration-thickness: 0.05em;
+  text-underline-offset: 0.12em;
+}
+
+/* Aqui eu mudo a cor do link quando o ponteiro passa sobre ele. */
+.menu-nav a:hover {
+  color: var(--sol);
+}
+
+/* Aqui eu posiciono o grafismo decorativo no canto direito do painel. */
+.menu-sticker {
+  align-self: flex-end;
+  width: 6.5rem;
+  height: auto;
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (prefers-reduced-motion: no-preference). */
+@media (prefers-reduced-motion: no-preference) {
+  /* Aqui eu suavizo os saltos entre âncoras quando a preferência de movimento permite. */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Aqui eu suavizo as mudanças de cor e borda dos controles do menu. */
+  .menu-toggle,
+  .menu-nav a {
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  }
+}
+
+/* Aqui eu limito a largura do conteúdo e mantenho margens laterais centralizadas. */
+.wide {
+  width: min(100% - 2.5rem, 82rem);
+  margin-inline: auto;
+}
+
+/* Aqui eu defino os títulos grandes com tamanho adaptável e linhas próximas. */
+.display-title {
+  font-size: clamp(2.75rem, 8vw, 8rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+/* Aqui eu padronizo os pequenos textos de identificação das seções. */
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+/* Aqui eu alinho título e ação da seção, permitindo quebra quando falta espaço. */
+.section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+/* Aqui eu alinho o texto e a seta dos links e botões, mantendo uma área mínima de toque. */
+.text-link,
+.action-button {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 650;
+}
+
+/* Aqui eu identifico os links de texto com um sublinhado afastado das letras. */
+.text-link {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* Aqui eu reforço o sublinhado quando o ponteiro passa sobre o link. */
+.text-link:hover {
+  text-decoration-color: var(--azul);
+  text-decoration-thickness: 2px;
+}
+
+/* Aqui eu crio o botão amarelo com texto grafite e bordas arredondadas. */
+.action-button {
+  padding: 0.75rem 1.2rem;
+  border: 2px solid transparent;
+  border-radius: 26px;
+  background: var(--sol);
+  color: var(--grafite);
+}
+
+/* Aqui eu evidencio a borda do botão ao passar o ponteiro. */
+.action-button:hover {
+  border-color: var(--grafite);
+}
+
+/* Aqui eu preparo a moldura para fotos com preenchimento absoluto, recorte e cantos arredondados. */
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: clamp(24px, 3vw, 40px);
+  background: color-mix(in srgb, var(--off-white) 80%, var(--marinho));
+}
+
+/* Aqui eu centralizo a seta dentro de um controle circular de tamanho fixo. */
+.round-arrow {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+/* Aqui eu reduzo o destaque da seta quando ela está desabilitada. */
+.round-arrow:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+/* Aqui eu destaco as setas disponíveis e os cartões que recebem interação. */
+button.round-arrow:not(:disabled):is(:hover, :focus-visible),
+.product-link:is(:hover, :focus-visible) .round-arrow {
+  border-color: var(--sol);
+  background: var(--sol);
+  color: var(--grafite);
+}
+
+/* Aqui eu crio a faixa azul e recorto o texto que ultrapassa suas bordas. */
+.impact-band {
+  overflow: clip;
+  padding-block: clamp(1rem, 4vw, 3rem);
+  background: var(--azul);
+  color: var(--off-white);
+}
+
+/* Aqui eu mantenho a frase da faixa em uma linha larga, com letras grandes. */
+.impact-band p {
+  width: max-content;
+  padding-inline: 0.12em;
+  font-size: clamp(4rem, 12.4vw, 13rem);
+  font-weight: 830;
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  /* Aqui eu aumento o espaço entre as palavras de Arte no corpo. */
+  word-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Aqui eu mostro a repetição da frase apenas pelo contorno das letras. */
+.impact-band span + span {
+  /* Aqui eu separo as repetições da frase para dar mais respiro à faixa. */
+  margin-inline-start: 0.5em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--off-white);
+}
+
+/* Aqui eu defino o respiro vertical das seções de coleção e das páginas internas. */
+.collection-section,
+.page-section {
+  padding-block: clamp(3rem, 7vw, 7rem);
+}
+
+/* Aqui eu reservo uma margem ao rolar até a âncora da coleção. */
+#colecao {
+  scroll-margin-top: 1rem;
+}
+
+/* Aqui eu organizo os produtos em grade com espaço entre os cartões. */
+.product-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Aqui eu faço toda a área do cartão funcionar como link. */
+.product-link {
+  display: block;
+  border-radius: 32px;
+}
+
+/* Aqui eu defino a proporção da foto de capa das peças. */
+.product-photo {
+  aspect-ratio: 1 / 1.02;
+}
+
+/* Aqui eu alterno a proporção das fotos pares para criar uma composição assimétrica. */
+.product-card:nth-child(even) .product-photo {
+  aspect-ratio: 4 / 4.65;
+}
+
+/* Aqui eu distribuo os dados da peça e a seta na legenda do cartão. */
+.product-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0.15rem 0;
+}
+
+/* Aqui eu ajusto o destaque tipográfico do nome de cada peça. */
+.product-caption h3 {
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  font-weight: 650;
+  line-height: 1.05;
+}
+
+/* Aqui eu separo o preço do nome com um pequeno espaço. */
+.product-caption p {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+}
+
+/* Aqui eu crio a superfície grafite que destaca o editorial. */
+.lookbook {
+  padding-block: clamp(3rem, 7vw, 6rem);
+  background: var(--grafite);
+  color: var(--off-white);
+}
+
+/* Aqui eu uso foco amarelo nas áreas de fundo escuro para manter sua visibilidade. */
+.lookbook :focus-visible,
+.manifesto-head :focus-visible {
+  outline-color: var(--sol);
+}
+
+/* Aqui eu coloco as setas do editorial lado a lado. */
+.carousel-controls {
+  display: flex;
+  gap: 0.65rem;
+}
+
+/* Aqui eu giro a mesma seta para representar a ação de voltar. */
+.carousel-controls .previous svg {
+  transform: rotate(180deg);
+}
+
+/* Aqui eu crio a faixa horizontal com encaixe das fotos e rolagem contida no próprio editorial. */
+.carousel-track {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 3vw, 2rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: max(1.25rem, calc((100vw - 82rem) / 2));
+  scrollbar-width: thin;
+  scrollbar-color: var(--off-white) var(--grafite);
+  padding: 1rem max(1.25rem, calc((100vw - 82rem) / 2)) 1.6rem;
+}
+
+/* Aqui eu desenho o foco para dentro da faixa, evitando que o contorno seja cortado. */
+.carousel-track:focus-visible {
+  outline-offset: -3px;
+}
+
+/* Aqui eu defino a largura dos slides e o alinhamento usado ao encaixar a rolagem. */
+.carousel-track li {
+  flex: 0 0 min(78vw, 24rem);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+/* Aqui eu alinho as fotos dos produtos para facilitar a comparação entre as peças. */
+.carousel-product-photo {
+  aspect-ratio: 4 / 5;
+}
+
+/* Aqui eu reservo espaço para o convite final de acesso à coleção. */
+.collection-cta {
+  padding-block: clamp(3.25rem, 8vw, 8rem);
+}
+
+/* Aqui eu distribuo o texto e o adesivo do convite final. */
+.collection-cta .wide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* Aqui eu afasto o botão do título do convite. */
+.collection-cta .action-button {
+  margin-top: 1.5rem;
+}
+
+/* Aqui eu ajusto o tamanho do adesivo sem deformar sua proporção. */
+.collection-cta img {
+  flex: 0 0 auto;
+  width: clamp(3.5rem, 20vw, 13rem);
+  height: auto;
+}
+
+/* Aqui eu separo o cabeçalho da página do conteúdo seguinte. */
+.page-heading {
+  margin-bottom: clamp(2rem, 5vw, 5rem);
+}
+
+/* Aqui eu crio espaço em volta dos títulos das páginas e do manifesto. */
+.page-heading .display-title,
+.manifesto-head .display-title {
+  margin-block: 0.5rem 1rem;
+}
+
+/* Aqui eu limito a largura da apresentação para facilitar sua leitura. */
+.page-heading > p:last-of-type {
+  max-width: 30ch;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+}
+
+/* Aqui eu separo o link de retorno do detalhe da peça. */
+.back-link {
+  margin-bottom: 1rem;
+}
+
+/* Aqui eu organizo a galeria e as informações da peça em uma grade. */
+.product-detail {
+  display: grid;
+  gap: clamp(1.75rem, 5vw, 5rem);
+}
+
+/* Aqui eu reservo a proporção da imagem principal da galeria. */
+.gallery-main {
+  aspect-ratio: 1 / 1.06;
+}
+
+/* Aqui eu organizo as miniaturas em linhas que podem quebrar conforme o espaço disponível. */
+.gallery-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+/* Aqui eu crio a moldura quadrada e arredondada de cada miniatura. */
+.gallery-thumb {
+  position: relative;
+  width: 4.75rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 24px;
+}
+
+/* Aqui eu marco com borda azul a miniatura selecionada. */
+.gallery-thumb[aria-pressed="true"] {
+  border-color: var(--azul);
+}
+
+/* Aqui eu adapto o tamanho do título ao espaço das informações da peça. */
+.product-info .display-title {
+  font-size: clamp(2.65rem, 6.5vw, 6.25rem);
+}
+
+/* Aqui eu defino o espaçamento e a leitura do preço e da descrição. */
+.product-price,
+.product-description {
+  margin-top: 1rem;
+  font-size: 1.15rem;
+}
+
+/* Aqui eu limito o comprimento das linhas da descrição da peça. */
+.product-description {
+  max-width: 34ch;
+}
+
+/* Aqui eu separo a escolha de tamanho das informações da peça. */
+.product-options {
+  margin-top: 1.6rem;
+}
+
+/* Aqui eu distribuo as opções de tamanho permitindo que quebrem de linha. */
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-block: 0.55rem 1.25rem;
+}
+
+/* Aqui eu dou às opções de tamanho aparência de botão e área mínima de toque. */
+.size-options label span {
+  display: grid;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 0.55rem;
+  place-items: center;
+  border: 1px solid var(--marinho);
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+/* Aqui eu destaco a opção de tamanho marcada com fundo azul. */
+.size-options input:checked + span {
+  background: var(--azul);
+  color: var(--off-white);
+}
+
+/* Aqui eu transfiro o destaque de foco do campo oculto para seu rótulo visível. */
+.size-options input:focus-visible + span {
+  outline: 2px solid var(--azul);
+  outline-offset: 3px;
+}
+
+/* Aqui eu reservo espaço para as confirmações sem deslocar o formulário quando a mensagem aparece. */
+.product-options [role="status"],
+.contact-form [role="status"] {
+  min-height: 1.5em;
+  margin-top: 0.6rem;
+}
+
+/* Aqui eu crio a superfície azul que envolve o manifesto. */
+.manifesto {
+  padding-block: clamp(3.5rem, 8vw, 8rem);
+  background: var(--azul);
+  color: var(--off-white);
+}
+
+/* Aqui eu uso o cabeçalho do manifesto como referência para posicionar seu grafismo. */
+.manifesto-head {
+  position: relative;
+}
+
+/* Aqui eu posiciono o grafismo no canto superior do cabeçalho do manifesto. */
+.manifesto-head img {
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  width: clamp(3.5rem, 12vw, 8.75rem);
+  height: auto;
+}
+
+/* Aqui eu limito a largura do título e separo a abertura das fotos e do texto. */
+.manifesto-head .display-title {
+  position: relative;
+  max-width: 92%;
+  margin-bottom: clamp(2rem, 6vw, 5rem);
+}
+
+/* Aqui eu organizo a foto e o texto do manifesto em uma grade. */
+.manifesto-grid {
+  display: grid;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+/* Aqui eu defino a proporção e o fundo da imagem principal do manifesto. */
+.manifesto-photo {
+  aspect-ratio: 4 / 4.7;
+  background: var(--off-white);
+}
+
+/* Aqui eu limito a largura das linhas e separo os parágrafos do manifesto. */
+.manifesto-copy > p {
+  max-width: 30ch;
+  margin-bottom: 1em;
+  font-size: clamp(1.18rem, 2.5vw, 1.65rem);
+  line-height: 1.3;
+}
+
+/* Aqui eu destaco a assinatura manuscrita e a mantenho acima do recorte. */
+.manifesto-copy .manifesto-signature {
+  position: relative;
+  z-index: 1;
+  max-width: none;
+  margin: 0;
+  color: var(--sol);
+  font-family: var(--font-script);
+  font-size: clamp(2.3rem, 5vw, 4.75rem);
+}
+
+/* Aqui eu posiciono o recorte editorial com uma pequena sobreposição. */
+.manifesto-cutout {
+  position: relative;
+  width: min(75%, 25rem);
+  margin: -0.8rem 0 0 auto;
+  aspect-ratio: 2 / 2.75;
+}
+
+/* Aqui eu preservo a imagem inteira dentro do espaço do recorte. */
+.manifesto-cutout img {
+  object-fit: contain;
+}
+
+/* Aqui eu organizo a apresentação e o formulário da página de contato. */
+.contact-page {
+  display: grid;
+  gap: clamp(1.5rem, 7vw, 6rem);
+}
+
+/* Aqui eu retiro a margem do cabeçalho porque a grade já controla sua separação. */
+.contact-page .page-heading {
+  margin-bottom: 0;
+}
+
+/* Aqui eu dimensiono o grafismo decorativo da página de contato. */
+.contact-page .page-heading img {
+  width: clamp(3.5rem, 12vw, 9.5rem);
+  height: auto;
+  margin-top: 0.6rem;
+}
+
+/* Aqui eu organizo os campos dentro de uma moldura arredondada. */
+.contact-form {
+  display: grid;
+  align-self: start;
+  gap: 0.55rem;
+  padding: clamp(1.15rem, 4vw, 3rem);
+  border: 1px solid color-mix(in srgb, var(--marinho) 25%, transparent);
+  border-radius: 32px;
+}
+
+/* Aqui eu reforço o peso dos rótulos para identificar os campos. */
+.contact-form label {
+  font-weight: 650;
+}
+
+/* Aqui eu padronizo os campos com largura total, bordas arredondadas e tamanho confortável para toque. */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  min-height: 44px;
+  margin-bottom: 0.55rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--marinho) 60%, transparent);
+  border-radius: 24px;
+  font-size: 1rem;
+}
+
+/* Aqui eu permito aumentar a área da mensagem apenas na direção vertical. */
+.contact-form textarea {
+  resize: vertical;
+}
+
+/* Aqui eu separo o botão de simulação dos campos. */
+.contact-form .action-button {
+  margin-top: 0.4rem;
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (min-width: 700px). */
+@media (min-width: 700px) {
+  /* Aqui eu distribuo os produtos em duas colunas de larguras diferentes nas telas maiores. */
+  .product-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: start;
+    gap: clamp(2rem, 7vw, 7.5rem);
+  }
+
+  /* Aqui eu desloco os cartões pares para reforçar a composição assimétrica. */
+  .product-grid > .product-card:nth-child(even) {
+    margin-top: clamp(2rem, 8vw, 8rem);
+  }
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (min-width: 760px). */
+@media (min-width: 760px) {
+  /* Aqui eu coloco galeria e informações lado a lado quando existe largura suficiente. */
+  .product-detail {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    align-items: center;
+  }
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (min-width: 800px). */
+@media (min-width: 800px) {
+  /* Aqui eu coloco o conteúdo do manifesto e do contato em duas colunas nas telas maiores. */
+  .manifesto-grid,
+  .contact-page {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+  }
+
+  /* Aqui eu acrescento respiro acima do texto do manifesto na composição em colunas. */
+  .manifesto-copy {
+    padding-top: 2rem;
+  }
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (prefers-reduced-motion: reduce). */
+@media (prefers-reduced-motion: reduce) {
+  /* Aqui eu removo o deslocamento da faixa quando a pessoa prefere menos movimento. */
+  .impact-band p {
+    transform: none !important;
+  }
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (prefers-reduced-motion: no-preference). */
+@media (prefers-reduced-motion: no-preference) {
+  /* Aqui eu aplico a entrada suave da página quando o movimento está permitido. */
+  .page-transition {
+    animation: page-in 260ms ease-out both;
+  }
+
+  /* Aqui eu só ativo a animação de entrada por rolagem se o navegador oferecer suporte. */
+  @supports (animation-timeline: view()) {
+    /* Aqui eu ligo a entrada dos cartões e da foto do manifesto à sua passagem pela tela. */
+    .product-card,
+    .manifesto-photo {
+      animation: editorial-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 65%;
+    }
+  }
+}
+
+/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (hover: hover) and (prefers-reduced-motion: no-preference). */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  /* Aqui eu preparo uma rotação suave dos adesivos em dispositivos com ponteiro e movimento permitido. */
+  .sticker-turn {
+    transition: transform 250ms ease-out;
+  }
+
+  /* Aqui eu inclino o adesivo quando o ponteiro passa sobre ele. */
+  .sticker-turn:hover {
+    transform: rotate(-12deg);
+  }
+}
+
+/* Aqui eu fixo o WhatsApp no canto inferior direito, respeitando as áreas seguras do celular. */
+.whatsapp-float {
+  position: fixed;
+  z-index: 5;
+  right: max(1.25rem, env(safe-area-inset-right));
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 1px solid var(--off-white);
+  border-radius: 50%;
+  background: var(--azul);
+  color: var(--off-white);
+  box-shadow: 0 4px 16px rgb(3 35 94 / 22%);
+}
+
+/* Aqui eu destaco o foco com contraste sobre as superfícies claras e escuras do site. */
+.whatsapp-float:focus-visible {
+  outline: 3px solid var(--sol);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 8px var(--grafite);
+}
+
+/* Aqui eu reservo espaço no fim da página para o botão não cobrir os créditos do rodapé. */
+.footer-bottom {
+  padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Aqui eu sinalizo o clique disponível com as cores do studio apenas em dispositivos com ponteiro. */
+@media (hover: hover) and (pointer: fine) {
+  .whatsapp-float:hover {
+    background: var(--sol);
+    color: var(--grafite);
+    border-color: var(--grafite);
+  }
+}
+
+/* Aqui eu descrevo as etapas da animação page-in, usada pelos elementos acima. */
+@keyframes page-in {
+  /* Aqui eu defino a opacidade inicial da entrada da página. */
+  from { opacity: 0.55; }
+  /* Aqui eu termino a entrada da página com opacidade total. */
+  to { opacity: 1; }
+}
+
+/* Aqui eu descrevo as etapas da animação editorial-in, usada pelos elementos acima. */
+@keyframes editorial-in {
+  /* Aqui eu inicio a entrada editorial com leve deslocamento vertical e transparência. */
+  from { opacity: 0.7; transform: translateY(14px); }
+  /* Aqui eu termino a entrada editorial na posição original e com opacidade total. */
+  to { opacity: 1; transform: translateY(0); }
+}
