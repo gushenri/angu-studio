@@ -1,218 +1,344 @@
-/* Aqui eu defino o espaçamento, o tamanho do botão e a grade da abertura, começando pela composição de celular. */
+/* Aqui eu trato a hero como uma página editorial, com camadas contidas para não criar rolagem horizontal. */
 .hero {
-  --hero-gap: clamp(0.35rem, 0.85vw, 0.75rem);
-  --action-size: clamp(5.5rem, 9vw, 8rem);
+  --hero-ease: cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  isolation: isolate;
-  gap: var(--hero-gap);
   width: min(100%, 100rem);
   margin-inline: auto;
-  padding: var(--hero-gap);
+  padding: 1.25rem 1.25rem 0;
+  overflow: clip;
+  background: var(--off-white);
+  color: var(--azul);
 }
 
-/* Aqui eu compartilho o recorte e os cantos arredondados da foto e do bloco de texto. */
-.photo,
-.editorial {
-  position: relative;
-  overflow: hidden;
-  border-radius: clamp(24px, 3vw, 40px);
-}
-
-/* Aqui eu reservo altura para a foto e uso marinho como fundo enquanto ela carrega. */
-.photo {
-  min-height: clamp(25rem, 120vw, 40rem);
-  background: var(--marinho);
-}
-
-/* Aqui eu preencho a área da foto e ajusto seu enquadramento sem deformar a imagem. */
-.photo img {
-  object-fit: cover;
-  object-position: 50% 10%;
-}
-
-/* Aqui eu coloco o texto antes da foto no celular, sobre uma superfície azul. */
-.editorial {
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  min-height: 19rem;
-  padding: clamp(1.5rem, 5vw, 5.5rem);
-  padding-bottom: 3.5rem;
+/* Aqui eu crio uma mancha de cor contínua atrás da modelo, em vez de uma moldura retangular. */
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 24%;
+  right: -32%;
+  width: 112%;
+  height: 60%;
+  border-radius: 48% 0 0 38%;
   background: var(--azul);
-  color: var(--off-white);
+  transform: rotate(-9deg);
+  pointer-events: none;
 }
 
-/* Aqui eu estilizo a pequena identificação da abertura em caixa-alta. */
-.kicker {
+/* Aqui eu marco a abertura como uma publicação, mantendo os textos pequenos e legíveis. */
+.meta {
   position: relative;
-  margin-bottom: 1.5rem;
-  font-size: 0.7rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
   line-height: 1.4;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+.meta > span {
+  white-space: nowrap;
+}
 
-/* Aqui eu destaco o título com letras grandes, linhas próximas e tamanho adaptável. */
+/* Aqui eu uso o título como elemento gráfico; as duas linhas mantêm espaço para o acento de mãos. */
 .title {
   position: relative;
-  /* Aqui eu separo as linhas do título para que o acento de mãos não encoste em Muitas. */
+  z-index: 3;
   display: grid;
-  row-gap: 0.08em;
-  font-size: clamp(2.9rem, 15vw, 7.2rem);
+  row-gap: 0.12em;
+  width: fit-content;
+  margin-top: 2.25rem;
+  font-size: clamp(4rem, 20vw, 9.5rem);
   font-weight: 850;
-  line-height: 1;
-  letter-spacing: -0.035em;
+  line-height: 0.86;
+  letter-spacing: -0.065em;
   text-transform: uppercase;
 }
-
-/* Aqui eu faço cada trecho do título ocupar sua própria linha. */
 .title > span {
   display: block;
 }
+/* Aqui eu preservo a leitura das letras azuis quando elas alcançam a fotografia ou a mancha de cor. */
+.title > span:first-child {
+  -webkit-text-stroke: 1.5px var(--off-white);
+  paint-order: stroke fill;
+}
 
-/* Aqui eu uso amarelo apenas no ponto final do título. */
+/* Aqui eu desloco a segunda linha e uso contorno azul para ela continuar legível sobre foto e fundo. */
+.titleSecond {
+  padding-left: 0.4em;
+  color: var(--off-white);
+  -webkit-text-stroke: 1.5px var(--azul);
+  paint-order: stroke fill;
+}
 .period {
-  color: var(--sol);
+  color: var(--azul);
+  -webkit-text-stroke: 0;
 }
 
-/* Aqui eu limito a largura do texto de apoio e o separo do título. */
-.copy {
+/* Aqui eu dou protagonismo à fotografia no celular, deixando os grafismos ultrapassarem o alinhamento do texto. */
+.photo {
   position: relative;
-  max-width: 23ch;
-  margin-top: 1.5rem;
-  font-size: clamp(1rem, 1.55vw, 1.3rem);
-  line-height: 1.2;
+  z-index: 2;
+  width: calc(100% + 2.5rem);
+  margin: -1rem -1.25rem 0;
+  aspect-ratio: 2 / 2.7;
+  pointer-events: none;
+}
+.photo img {
+  object-fit: cover;
+  object-position: center top;
 }
 
-/* Aqui eu posiciono e inclino o grafismo decorativo no canto do bloco editorial. */
-.sticker {
+/* Aqui eu reúno os desenhos em uma camada decorativa que nunca bloqueia o botão. */
+.orbit,
+.spiral,
+.spark {
   position: absolute;
-  top: 0.3rem;
-  right: 0.3rem;
-  width: clamp(4rem, 11vw, 9rem);
-  height: auto;
-  transform: rotate(-13deg);
+  pointer-events: none;
 }
-
-/* Aqui eu sobreponho o acesso à coleção na junção dos blocos da abertura. */
-.action {
-  position: absolute;
+.orbit {
   z-index: 1;
-  grid-row: 2;
-  top: calc(var(--hero-gap) / -2);
-  right: clamp(2.5rem, 7vw, 3.5rem);
-  display: grid;
-  width: var(--action-size);
-  aspect-ratio: 1;
-  place-items: center;
-  transform: translateY(-50%) rotate(-9deg);
+  top: 34%;
+  left: 5%;
+  width: 105%;
+  height: 39%;
+  color: var(--off-white);
+  transform: rotate(-18deg);
 }
-
-/* Aqui eu crio o botão circular amarelo com texto grafite centralizado. */
-.collection {
-  display: grid;
+.orbit svg {
+  display: block;
   width: 100%;
   height: 100%;
-  place-content: center;
-  gap: 0.2rem;
-  border-radius: 50%;
-  background: var(--sol);
-  color: var(--grafite);
-  font-size: clamp(0.85rem, 1.35vw, 1.15rem);
-  font-weight: 700;
-  line-height: 0.96;
-  text-align: center;
-}
-
-/* Aqui eu afasto o contorno de foco para destacá-lo ao redor do botão. */
-.collection:focus-visible {
-  outline-color: var(--sol);
-  outline-offset: 0.85rem;
-}
-
-/* Aqui eu ajusto o tamanho da seta em relação ao texto do botão. */
-.arrow {
-  font-size: 1.15em;
-}
-
-/* Aqui eu posiciono o contorno orgânico ao redor do botão sem bloquear cliques. */
-.action :global(.hero-ring) {
-  position: absolute;
-  inset: -0.95rem;
-  width: calc(100% + 1.9rem);
-  height: calc(100% + 1.9rem);
   overflow: visible;
-  color: var(--sol);
-  pointer-events: none;
-  transform: rotate(-13deg);
+}
+.spiral {
+  z-index: 1;
+  top: 38%;
+  left: -0.75rem;
+  width: clamp(4rem, 12vw, 7rem);
+  height: auto;
+  transform: rotate(-22deg);
+}
+.spark {
+  z-index: 3;
+  top: 45%;
+  right: -0.5rem;
+  width: clamp(3.5rem, 10vw, 7rem);
+  height: auto;
+  transform: rotate(6deg);
 }
 
-/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (prefers-reduced-motion: no-preference). */
-@media (prefers-reduced-motion: no-preference) {
-  /* Aqui eu animo o aparecimento do traço normalizado do contorno quando o movimento está permitido. */
-  .action :global(.hero-ring) path {
-    stroke-dasharray: 1;
-    animation: draw-ring 750ms 150ms ease-out both;
-  }
-
-  /* Aqui eu suavizo a rotação do grafismo decorativo. */
-  .sticker {
-    transition: transform 250ms ease-out;
-  }
-
-  /* Aqui eu mudo a inclinação do grafismo ao passar o ponteiro. */
-  .sticker:hover {
-    transform: rotate(6deg);
-  }
+/* Aqui eu preservo a frase de apoio fora das sobreposições mais densas. */
+.caption {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-block: 1.25rem 0.5rem;
+  color: var(--marinho);
+}
+.caption p {
+  max-width: 23ch;
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  line-height: 1.3;
+}
+.captionMark {
+  font-size: 1.75rem;
+  line-height: 1;
 }
 
-/* Aqui eu descrevo as etapas da animação draw-ring, usada pelos elementos acima. */
-@keyframes draw-ring {
-  /* Aqui eu inicio o contorno com todo o traço deslocado, deixando o desenho oculto. */
-  from { stroke-dashoffset: 1; }
-  /* Aqui eu revelo o contorno completo ao finalizar a animação. */
-  to { stroke-dashoffset: 0; }
+/* Aqui eu construo a etiqueta sem recortar o link em si, preservando uma área de toque e foco completa. */
+.collection {
+  position: absolute;
+  z-index: 5;
+  right: 1.5rem;
+  bottom: 9.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: clamp(9.5rem, 17vw, 14rem);
+  min-height: 6.5rem;
+  padding: 1.25rem 1.35rem;
+  border-radius: 24px;
+  color: var(--grafite);
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-weight: 750;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  transform: rotate(-8deg);
+}
+.collection::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--sol);
+  clip-path: polygon(4% 7%, 38% 0, 71% 5%, 97% 1%, 100% 42%, 96% 94%, 64% 100%, 31% 94%, 2% 100%, 0 48%);
+}
+.collection:focus-visible {
+  outline: 3px solid var(--marinho);
+  outline-offset: 6px;
+  box-shadow: 0 0 0 6px var(--off-white);
+}
+.collection:active {
+  transform: rotate(-5deg) scale(0.97);
+}
+.arrow {
+  font-size: 1.8em;
+  font-weight: 400;
 }
 
-/* Aqui eu condiciono os estilos ao tamanho de tela ou às preferências e recursos do dispositivo: (min-width: 900px). */
-@media (min-width: 900px) {
-  /* Aqui eu mudo a abertura para duas colunas e ajusto sua altura em telas a partir de 900 pixels. */
+/* Aqui eu fecho a composição com uma assinatura manuscrita e uma linha de publicação. */
+.footer {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-block: 1rem 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--azul) 25%, transparent);
+}
+.footer > span:first-child {
+  max-width: 13ch;
+  font-size: 0.6rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.signature {
+  font-family: var(--font-script);
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  line-height: 1.2;
+  transform: rotate(-5deg);
+}
+
+/* Aqui eu reorganizo as camadas no desktop: letras atravessam a foto, e a legenda ocupa o espaço negativo. */
+@media (min-width: 760px) {
   .hero {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
-    min-height: clamp(35rem, calc(100svh - 6rem), 52rem);
+    display: block;
+    min-height: clamp(42rem, calc(100svh - 6rem), 58rem);
+    padding: 1.75rem clamp(2rem, 4.5vw, 5rem) 0;
   }
-
-  /* Aqui eu deixo a grade determinar a altura da foto na composição de duas colunas. */
-  .photo {
-    min-height: 0;
+  .hero::before {
+    top: 9%;
+    right: -16%;
+    width: 72%;
+    height: 84%;
+    border-radius: 46% 0 0 42%;
   }
-
-  /* Aqui eu reajusto o enquadramento da foto para o formato de tela maior. */
-  .photo img {
-    object-position: 50% 20%;
+  .meta {
+    font-size: 0.7rem;
   }
-
-  /* Aqui eu devolvo o texto à ordem natural da grade e ajusto seu espaçamento interno. */
-  .editorial {
-    grid-row: auto;
-    padding: 3.5rem clamp(3.75rem, 6vw, 7.5rem);
-  }
-
-  /* Aqui eu amplio o título de acordo com a largura disponível na composição de duas colunas. */
   .title {
-    font-size: clamp(3.8rem, 9vw, 9.3rem);
+    position: absolute;
+    top: 20%;
+    left: clamp(2rem, 4.5vw, 5rem);
+    margin: 0;
+    font-size: clamp(6.5rem, 14vw, 14rem);
   }
+  .titleSecond {
+    padding-left: 0.65em;
+    -webkit-text-stroke-width: 2px;
+  }
+  .photo {
+    position: absolute;
+    right: -2%;
+    bottom: 3.75rem;
+    width: 62%;
+    height: calc(100% - 3rem);
+    margin: 0;
+    aspect-ratio: auto;
+  }
+  .photo img {
+    object-position: center 12%;
+  }
+  .orbit {
+    top: 25%;
+    left: 28%;
+    width: 74%;
+    height: 65%;
+  }
+  .spiral {
+    top: auto;
+    bottom: 27%;
+    left: 5%;
+  }
+  .spark {
+    top: 19%;
+    right: 3%;
+  }
+  .caption {
+    position: absolute;
+    bottom: 7rem;
+    left: clamp(2rem, 4.5vw, 5rem);
+    max-width: 32%;
+    margin: 0;
+  }
+  .collection {
+    right: 11%;
+    bottom: 8rem;
+    min-height: 7.5rem;
+  }
+  .footer {
+    position: absolute;
+    right: clamp(2rem, 4.5vw, 5rem);
+    bottom: 0;
+    left: clamp(2rem, 4.5vw, 5rem);
+    margin: 0;
+    padding-block: 0.75rem 1rem;
+  }
+  .footer > span:first-child {
+    max-width: none;
+  }
+}
 
-  /* Aqui eu reposiciono o botão na divisão entre as colunas de foto e texto. */
-  .action {
-    grid-row: 1;
-    grid-column: 2;
-    inset: 67% auto auto calc(var(--hero-gap) / -2);
-    transform: translate(-50%, -50%) rotate(-9deg);
+/* Aqui eu animo apenas a chegada das letras e da fotografia, sem movimentos contínuos ou trabalho por quadro em JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+  .title > span {
+    animation: type-in 500ms var(--hero-ease) both;
   }
+  .title > span:nth-child(2) {
+    animation-delay: 90ms;
+  }
+  .photo {
+    animation: photo-in 600ms 60ms var(--hero-ease) both;
+  }
+}
+
+/* Aqui eu limito a microinteração da etiqueta aos dispositivos com ponteiro e movimento permitido. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .collection:hover {
+    transform: rotate(-3deg) scale(1.04);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .collection:active {
+    transform: rotate(-8deg);
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .collection {
+    transition: transform 160ms var(--hero-ease);
+  }
+}
+
+@keyframes type-in {
+  from { opacity: 0.6; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes photo-in {
+  from { opacity: 0.6; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
