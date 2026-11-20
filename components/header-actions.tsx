@@ -14,14 +14,14 @@ import { DemoLogin } from "./demo-login";
 // Aqui eu centralizo os nomes e os ícones dos três atalhos.
 const actions = [
   { name: "login", label: "Login" },
-  { name: "search", label: "Busca" },
-  { name: "favorites", label: "Favoritos" },
+  { name: "search", label: "Search" },
+  { name: "favorites", label: "Favorites" },
 ] as const;
 type Action = (typeof actions)[number]["name"];
 
 // Aqui eu ignoro acentos e diferenças de caixa para facilitar a busca por nomes de peças.
 function normalize(text: string) {
-  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("pt-BR");
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("en-US");
 }
 
 // Aqui eu abro um painel acessível para cada atalho, mantendo toda a experiência no navegador.
@@ -35,7 +35,7 @@ export function HeaderActions() {
   const { favorites, ready, persistent } = useFavorites();
   // Aqui eu mantenho a ordem em que as peças foram salvas e ignoro itens que não existem mais.
   const savedProducts = favorites.flatMap((slug) => products.filter((product) => product.slug === slug));
-  const title = actions.find((action) => action.name === active)?.label ?? "Atalhos";
+  const title = actions.find((action) => action.name === active)?.label ?? "Shortcuts";
   const term = normalize(query.trim());
   const results = products.filter((product) => normalize(`${product.name} ${product.description}`).includes(term));
 
@@ -61,9 +61,9 @@ export function HeaderActions() {
   return (
     <>
       {/* Aqui eu mostro os nomes em telas maiores e mantenho os nomes acessíveis nos ícones do celular. */}
-      <div className="header-shortcuts" role="group" aria-label="Atalhos da galeria">
+      <div className="header-shortcuts" role="group" aria-label="Gallery shortcuts">
         {actions.map((action) => (
-          <button key={action.name} type="button" className="header-shortcut" aria-label={action.name === "favorites" ? `Favoritos (${favorites.length})` : action.label} title={action.label}
+          <button key={action.name} type="button" className="header-shortcut" aria-label={action.name === "favorites" ? `Favorites (${favorites.length})` : action.label} title={action.label}
             aria-haspopup="dialog" aria-controls="header-action-dialog" aria-expanded={active === action.name}
             onClick={(event) => open(action.name, event)}>
             <HeaderIcon name={action.name} />
@@ -80,17 +80,17 @@ export function HeaderActions() {
         <div className="header-dialog-panel">
           <div className="header-dialog-heading">
             <p className="eyebrow">Anzu studio</p>
-            <button type="button" className="menu-toggle" onClick={close} aria-label={`Fechar ${title.toLocaleLowerCase("pt-BR")}`}>Fechar <span aria-hidden="true">×</span></button>
+            <button type="button" className="menu-toggle" onClick={close} aria-label={`Close ${title.toLocaleLowerCase("en-US")}`}>Close <span aria-hidden="true">×</span></button>
           </div>
           <h2 ref={heading} tabIndex={-1} id="header-action-title" className="header-dialog-title">{title}.</h2>
 
           {active === "search" && (
             <>
               {/* Aqui eu filtro o catálogo enquanto a pessoa digita, sem enviar dados para um servidor. */}
-              <label className="eyebrow" htmlFor="header-search">O que vamos encontrar?</label>
-              <input ref={search} id="header-search" className="header-search-input" type="search" placeholder="Camiseta, jaqueta, sacola…"
+              <label className="eyebrow" htmlFor="header-search">What shall we find?</label>
+              <input ref={search} id="header-search" className="header-search-input" type="search" placeholder="T-shirt, jacket, tote bag…"
                 value={query} onChange={(event) => setQuery(event.target.value)} aria-controls="header-search-results" />
-              <p className="header-dialog-note" role="status">{term ? `Encontramos ${results.length} ${results.length === 1 ? "peça" : "peças"}.` : "Vamos conhecer as peças do studio."}</p>
+              <p className="header-dialog-note" role="status">{term ? `Found ${results.length} ${results.length === 1 ? "piece" : "pieces"}.` : "Explore the studio’s pieces."}</p>
               <ul id="header-search-results" className="header-search-results">
                 {results.map((product) => (
                   <li key={product.slug}><Link href={`/shop/${product.slug}`} onClick={close}>
@@ -100,17 +100,17 @@ export function HeaderActions() {
                   </Link></li>
                 ))}
               </ul>
-              {results.length === 0 && <p className="header-dialog-note">Ainda não encontramos essa peça. Vamos tentar outro nome ou <Link href="/shop" onClick={close} className="text-link">voltar à galeria</Link>.</p>}
+              {results.length === 0 && <p className="header-dialog-note">We haven’t found that piece yet. Try another name or <Link href="/shop" onClick={close} className="text-link">return to the gallery</Link>.</p>}
             </>
           )}
 
           {active === "login" && <DemoLogin />}
 
           {/* Aqui eu mostro as peças salvas ou um convite à coleção quando a lista está vazia. */}
-          {active === "favorites" && !ready && <p role="status">Estamos reunindo suas escolhas…</p>}
+          {active === "favorites" && !ready && <p role="status">Gathering your favorites…</p>}
           {active === "favorites" && ready && savedProducts.length > 0 && (
             <>
-              <p className="header-dialog-note" role="status">{savedProducts.length} {savedProducts.length === 1 ? "peça salva" : "peças salvas"}. {persistent ? "Guardamos suas escolhas neste navegador." : "Guardamos suas escolhas só nesta visita. O navegador bloqueou o salvamento."}</p>
+              <p className="header-dialog-note" role="status">{savedProducts.length} {savedProducts.length === 1 ? "piece saved" : "pieces saved"}. {persistent ? "Your favorites are saved in this browser." : "Your favorites are saved for this visit only. The browser blocked storage."}</p>
               <ul className="saved-products">
                 {savedProducts.map((product) => (
                   <li key={product.slug}>
@@ -128,9 +128,9 @@ export function HeaderActions() {
           {active === "favorites" && ready && savedProducts.length === 0 && (
             <div className="header-dialog-empty">
               <HeaderIcon name="favorites" />
-              <h3>Peças que ficam na cabeça.</h3>
-              <p>Vamos guardar suas escolhas? Toque no coração de uma peça.</p>
-              <Link href="/shop" className="action-button" onClick={close}>Conhecer as peças <HandArrow /></Link>
+              <h3>Pieces you keep thinking about.</h3>
+              <p>Save your favorites. Tap the heart on a piece.</p>
+              <Link href="/shop" className="action-button" onClick={close}>Explore the pieces <HandArrow /></Link>
             </div>
           )}
         </div>

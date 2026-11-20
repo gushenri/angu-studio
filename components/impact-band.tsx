@@ -42,11 +42,11 @@ export function ImpactBand() {
   return (
     <div ref={band} className="impact-band">
       <motion.p ref={phrase} style={{ x: reduceMotion ? 0 : x }}>
-        <span>Arte no corpo.</span>
+        <span>Art on your body.</span>
         {/* Aqui eu repito a frase para sustentar o deslocamento sem duplicar sua leitura por tecnologias assistivas. */}
-        <span aria-hidden="true"> Arte no corpo.</span>
-        <span aria-hidden="true"> Arte no corpo.</span>
-        <span aria-hidden="true"> Arte no corpo.</span>
+        <span aria-hidden="true"> Art on your body.</span>
+        <span aria-hidden="true"> Art on your body.</span>
+        <span aria-hidden="true"> Art on your body.</span>
       </motion.p>
     </div>
   );

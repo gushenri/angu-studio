@@ -5,7 +5,7 @@ import { EditorialImage } from "../../components/editorial-image";
 import { colagem, recorte } from "../../lib/collection";
 
 // Aqui eu defino o título específico desta página para a aba do navegador e os buscadores.
-export const metadata: Metadata = { title: "Sobre | ANZU STUDIO" };
+export const metadata: Metadata = { title: "About | ANZU STUDIO" };
 
 // Aqui eu apresento o manifesto do studio com texto, foto principal e um recorte editorial.
 export default function AboutPage() {
@@ -13,7 +13,7 @@ export default function AboutPage() {
     <article className="manifesto">
       {/* Aqui eu apresento o título do manifesto junto de um grafismo decorativo. */}
       <header className="wide manifesto-head">
-        <p className="eyebrow">Nossa casa</p>
+        <p className="eyebrow">Our home</p>
         <h1 className="display-title">A N Z U</h1>
         <Image className="sticker-turn" src="/graphics/brilhos-offwhite.svg" alt="" width={140} height={140} />
       </header>
@@ -28,9 +28,9 @@ export default function AboutPage() {
         </div>
         <div className="manifesto-copy">
           {/* Aqui eu preservo todas as palavras da apresentação original nos parágrafos existentes. */}
-          <p>Anzu é uma casa de muitas mãos. Cada coleção nasce de um artista da nossa curadoria, que chega com o seu traço, a sua cor e o seu jeito de olhar, e nós abrimos espaço para isso virar roupa. Uma coleção nunca se parece com a outra, porque quem assina é sempre outra pessoa. O que fica entre elas é a curiosidade.</p>
-          <p>Escolhemos artistas como quem escolhe com quem conversar: pela obra, pela história, pelo que ainda está por acontecer. Aqui a arte sai da parede e vai para o corpo. Anda na rua, amassa no ônibus, toma sol e fica até tarde. Cada peça chega com a autoria de quem criou e ganha a de quem veste. Não há regras.</p>
-          <p className="manifesto-signature">É uma alegria que você faça parte dessa galeria em movimento.</p>
+          <p>Anzu is a home shaped by many hands. Each collection begins with an artist we curate, bringing their own lines, colors and way of seeing. We make room for that to become clothing. No two collections look alike, because each has a different artist behind it. Curiosity is what connects them.</p>
+          <p>We choose artists the way we choose who to talk to: for their work, their story and what is still to come. Here, art leaves the wall and finds a body. It walks the streets, gets creased on the bus, soaks up the sun and stays out late. Each piece carries its creator’s signature and takes on the wearer’s too. There are no rules.</p>
+          <p className="manifesto-signature">We’re happy to have you in this gallery in motion.</p>
           {/* Aqui eu complemento o manifesto com uma imagem de recorte. */}
           <div className="manifesto-cutout">
             <EditorialImage

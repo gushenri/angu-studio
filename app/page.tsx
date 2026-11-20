@@ -18,8 +18,8 @@ export default function Home() {
       <ImpactBand />
       <section className="wide collection-section" id="colecao" aria-labelledby="collection-title">
         <div className="section-heading">
-          <h2 className="display-title" id="collection-title">Uma coleção, uma assinatura.</h2>
-          <Link href="/shop" className="text-link">Conhecer a coleção <HandArrow /></Link>
+          <h2 className="display-title" id="collection-title">One collection, one signature.</h2>
+          <Link href="/shop" className="text-link">Explore the collection <HandArrow /></Link>
         </div>
         {/* Aqui eu destaco apenas as duas primeiras peças; a loja apresenta a lista completa. */}
         <ProductGrid products={products.slice(0, 2)} />
@@ -30,8 +30,8 @@ export default function Home() {
       <section className="collection-cta">
         <div className="wide">
           <div>
-            <h2 className="display-title">A arte vai com você.</h2>
-            <Link href="/shop" className="action-button">Entrar na galeria <HandArrow /></Link>
+            <h2 className="display-title">Art goes with you.</h2>
+            <Link href="/shop" className="action-button">Enter the gallery <HandArrow /></Link>
           </div>
           <Image className="sticker-turn" src="/graphics/laco.svg" width={210} height={210} alt="" />
         </div>

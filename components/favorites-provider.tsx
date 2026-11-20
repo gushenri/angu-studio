@@ -70,6 +70,6 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
 // Aqui eu centralizo o acesso ao estado para todos os controles usarem a mesma lista de favoritos.
 export function useFavorites() {
   const context = useContext(FavoritesContext);
-  if (!context) throw new Error("Use os favoritos dentro de FavoritesProvider.");
+  if (!context) throw new Error("Use favorites within FavoritesProvider.");
   return context;
 }

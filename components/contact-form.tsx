@@ -17,17 +17,17 @@ export function ContactForm() {
       setSubmitted(true);
     }}>
       {/* Aqui eu associo cada rótulo ao campo e uso a validação nativa dos dados obrigatórios. */}
-      <label htmlFor="contact-name">Nome</label>
+      <label htmlFor="contact-name">Name</label>
       <input id="contact-name" name="nome" autoComplete="name" required />
-      <label htmlFor="contact-email">E-mail</label>
+      <label htmlFor="contact-email">Email</label>
       <input id="contact-email" name="email" type="email" autoComplete="email" required />
-      <label htmlFor="contact-message">Mensagem</label>
+      <label htmlFor="contact-message">Message</label>
       <textarea id="contact-message" name="mensagem" rows={5} required />
       {/* Aqui eu aviso que o formulário é demonstrativo antes da ação de envio. */}
-      <p id="contact-note">Estamos ensaiando esta conversa. O envio é demonstrativo.</p>
-      <button type="submit" className="action-button">Simular conversa <HandArrow /></button>
+      <p id="contact-note">Let’s try a conversation. This form is a demo.</p>
+      <button type="submit" className="action-button">Try a demo message <HandArrow /></button>
       {/* Aqui eu anuncio o resultado da simulação de forma acessível. */}
-      <p role="status">{submitted ? "Concluímos a simulação. Sua mensagem não foi enviada." : ""}</p>
+      <p role="status">{submitted ? "Demo complete. Your message was not sent." : ""}</p>
     </form>
   );
 }

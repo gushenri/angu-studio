@@ -56,19 +56,19 @@ export function EditorialCarousel() {
   return (
     <section className="lookbook" aria-labelledby="lookbook-title">
       <div className="wide section-heading">
-        <h2 className="display-title" id="lookbook-title">Em movimento.</h2>
+        <h2 className="display-title" id="lookbook-title">In motion.</h2>
         {/* Aqui eu ofereço botões com nomes acessíveis para percorrer as peças. */}
         <div className="carousel-controls">
-          <button type="button" className="round-arrow previous" aria-label="Peça anterior" aria-controls="lookbook-track" disabled={atStart} onClick={() => step(-1)}>
+          <button type="button" className="round-arrow previous" aria-label="Previous piece" aria-controls="lookbook-track" disabled={atStart} onClick={() => step(-1)}>
             <HandArrow />
           </button>
-          <button type="button" className="round-arrow" aria-label="Próxima peça" aria-controls="lookbook-track" disabled={atEnd} onClick={() => step(1)}>
+          <button type="button" className="round-arrow" aria-label="Next piece" aria-controls="lookbook-track" disabled={atEnd} onClick={() => step(1)}>
             <HandArrow />
           </button>
         </div>
       </div>
       {/* Aqui eu também permito percorrer a faixa por toque, rolagem ou teclado. */}
-      <ul ref={track} id="lookbook-track" className="carousel-track" tabIndex={0} aria-label="Peças da coleção" onScroll={updateControls}>
+      <ul ref={track} id="lookbook-track" className="carousel-track" tabIndex={0} aria-label="Collection pieces" onScroll={updateControls}>
         {products.map((product) => (
           <li key={product.slug} className="product-card">
             {/* Aqui eu reutilizo o cartão da loja com foto, nome, preço e favoritos. */}

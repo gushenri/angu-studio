@@ -8,7 +8,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       {/* Aqui eu faço a assinatura funcionar como um atalho para a página inicial. */}
-      <Link href="/" aria-label="Anzu Studio, início" className="wordmark">
+      <Link href="/" aria-label="Anzu studio, home" className="wordmark">
         <span className="wordmark-script">anzu</span>
         <span className="wordmark-studio">studio</span>
       </Link>

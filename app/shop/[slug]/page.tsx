@@ -34,7 +34,7 @@ export default async function ProductPage({ params }: Props) {
   return (
     <section className="wide page-section">
       {/* Aqui eu ofereço um caminho de volta para a coleção completa. */}
-      <Link href="/shop" className="text-link back-link"><span aria-hidden="true">←</span> Voltar à galeria</Link>
+      <Link href="/shop" className="text-link back-link"><span aria-hidden="true">←</span> Back to the gallery</Link>
       <div className="product-detail">
         {/* Aqui eu mostro as fotos disponíveis para a peça encontrada. */}
         <ProductGallery photos={product.photos} />

@@ -34,47 +34,47 @@ export type Product = {
 // Aqui eu centralizo a foto no campo para reutilizar o mesmo arquivo e sua descrição.
 export const campo = {
   src: "/images/camiseta-campo.webp",
-  alt: "Modelo veste camiseta creme da Anzu em um campo dourado.",
+  alt: "Model wearing a cream Anzu T-shirt in a golden field.",
   position: "50% 35%",
 };
 
 // Aqui eu centralizo a foto da dupla de modelos para reutilizar o mesmo arquivo e sua descrição.
 export const dupla = {
   src: "/images/dupla-anzu.webp",
-  alt: "Dois modelos vestem peças azuis e creme sob o céu aberto.",
+  alt: "Two models wearing blue and cream pieces under an open sky.",
   position: "50% 34%",
 };
 
 // Aqui eu centralizo a foto da jaqueta com grafismos para reutilizar o mesmo arquivo e sua descrição.
 export const jaquetaEditorial = {
   src: "/images/jaqueta-editorial.webp",
-  alt: "Modelo de costas com jaqueta azul, cercado de rabiscos coloridos.",
+  alt: "Model seen from behind in a blue jacket, surrounded by colorful doodles.",
 };
 
 // Aqui eu centralizo a foto da colagem editorial para reutilizar o mesmo arquivo e sua descrição.
 export const colagem = {
   src: "/images/colagem-anzu.webp",
-  alt: "Modelo veste jaqueta de alfaiataria azul entre estrelas, laços e rabiscos.",
+  alt: "Model wearing a tailored blue jacket among stars, bows and doodles.",
   position: "50% 30%",
 };
 
 // Aqui eu centralizo a foto do recorte editorial para reutilizar o mesmo arquivo e sua descrição.
 export const recorte = {
   src: "/images/retrato-recorte.webp",
-  alt: "Modelo de óculos coloridos veste camiseta creme sob um casaco azul, cercada de estrelas.",
+  alt: "Model in colorful glasses wearing a cream T-shirt under a blue coat, surrounded by stars.",
 };
 
 // Aqui eu centralizo a foto da camiseta azul-marinho para reutilizar o mesmo arquivo e sua descrição.
 export const retratoVibrante = {
   src: "/images/camiseta-traco.webp",
-  alt: "Modelo sentada veste camiseta azul-marinho entre grafismos amarelos e azuis.",
+  alt: "Seated model wearing a navy T-shirt among yellow and blue graphics.",
   position: "50% 30%",
 };
 
 // Aqui eu centralizo a foto da sacola estampada para reutilizar o mesmo arquivo e sua descrição.
 export const sacola = {
   src: "/images/sacola-portal.webp",
-  alt: "Sacola creme com base e alças azuis, estampada com grafismos da Anzu.",
+  alt: "Cream tote bag with a blue base and handles, printed with Anzu graphics.",
 };
 
 // TODO: Confirmar nomes, preços, descrições e grade de tamanhos.
@@ -82,19 +82,19 @@ export const sacola = {
 export const products: readonly Product[] = [
   {
     slug: "camiseta-intervalo",
-    name: "Camiseta Intervalo",
+    name: "Interval T-shirt",
     price: 149,
-    description: "Camiseta creme de corte amplo com a assinatura azul da Anzu no peito.",
-    sizes: ["P", "M", "G", "GG"],
+    description: "Relaxed-fit cream T-shirt with Anzu’s blue signature on the chest.",
+    sizes: ["S", "M", "L", "XL"],
     photos: [
       {
         src: "/images/camiseta-studio.webp",
-        alt: "Modelo estica a frente da camiseta creme para mostrar a assinatura azul.",
+        alt: "Model stretching the front of a cream T-shirt to show the blue signature.",
       },
       campo,
       {
         src: "/images/camiseta-estudio-mockup.webp",
-        alt: "Mockup com frente e costas de camisetas creme da Anzu Studio.",
+        alt: "Mockup showing the front and back of cream Anzu studio T-shirts.",
         fit: "contain",
       },
       recorte,
@@ -102,14 +102,14 @@ export const products: readonly Product[] = [
   },
   {
     slug: "jaqueta-orbita",
-    name: "Jaqueta Órbita",
+    name: "Orbit Jacket",
     price: 329,
-    description: "Jaqueta azul com mangas claras e grafismos nas costas. O desenho segue o movimento do corpo.",
-    sizes: ["P", "M", "G"],
+    description: "Blue jacket with light sleeves and graphics on the back. The design follows the body’s movement.",
+    sizes: ["S", "M", "L"],
     photos: [
       {
         src: "/images/jaqueta-orbita.webp",
-        alt: "Modelo de costas destaca os grafismos da jaqueta azul em estúdio.",
+        alt: "Model seen from behind in a studio, showing the graphics on a blue jacket.",
         position: "50% 42%",
       },
       jaquetaEditorial,
@@ -117,54 +117,54 @@ export const products: readonly Product[] = [
   },
   {
     slug: "camiseta-arcano",
-    name: "Camiseta Arcano",
+    name: "Arcana T-shirt",
     price: 159,
-    description: "Camiseta preta com uma estampa ilustrada em formato de carta.",
-    sizes: ["P", "M", "G", "GG"],
-    photos: [{ src: "/images/camiseta-arcano.webp", alt: "Camiseta preta com uma carta de tarô ilustrada na frente." }],
+    description: "Black T-shirt with an illustrated card print.",
+    sizes: ["S", "M", "L", "XL"],
+    photos: [{ src: "/images/camiseta-arcano.webp", alt: "Black T-shirt with an illustrated tarot card on the front." }],
   },
   {
     slug: "camiseta-registro",
-    name: "Camiseta Registro",
+    name: "Record T-shirt",
     price: 159,
-    description: "Camiseta creme com dois quadros estampados em vermelho e azul.",
-    sizes: ["P", "M", "G", "GG"],
-    photos: [{ src: "/images/camiseta-registro.webp", alt: "Camiseta creme com duas ilustrações retangulares, uma vermelha e outra azul." }],
+    description: "Cream T-shirt with two framed prints in red and blue.",
+    sizes: ["S", "M", "L", "XL"],
+    photos: [{ src: "/images/camiseta-registro.webp", alt: "Cream T-shirt with two rectangular illustrations, one red and one blue." }],
   },
   {
     slug: "camiseta-traco",
-    name: "Camiseta Traço",
+    name: "Line T-shirt",
     price: 149,
-    description: "Camiseta azul-marinho com a assinatura da Anzu no peito.",
-    sizes: ["P", "M", "G", "GG"],
+    description: "Navy T-shirt with Anzu’s signature on the chest.",
+    sizes: ["S", "M", "L", "XL"],
     photos: [retratoVibrante],
   },
   {
     slug: "sacola-portal",
-    name: "Sacola Portal",
+    name: "Portal Tote Bag",
     price: 89,
-    description: "Sacola de alças azuis com rabiscos e grafismos da Anzu.",
-    sizes: ["Único"],
+    description: "Tote bag with blue handles, Anzu doodles and graphics.",
+    sizes: ["One size"],
     photos: [
       sacola,
       {
         src: "/images/sacola-portal-ambiente.webp",
-        alt: "Sacola estampada da Anzu pendurada pelas alças azuis em uma porta clara.",
+        alt: "Printed Anzu tote bag hanging by its blue handles on a light-colored door.",
       },
     ],
   },
   {
     slug: "jaqueta-linha",
-    name: "Jaqueta Linha",
+    name: "Line Jacket",
     price: 319,
-    description: "Jaqueta cobalto de corte curto e lapelas marcadas.",
-    sizes: ["P", "M", "G"],
+    description: "Cropped cobalt jacket with defined lapels.",
+    sizes: ["S", "M", "L"],
     photos: [colagem],
   },
 ];
 
 // Aqui eu preparo um formatador reutilizável para mostrar valores em reais no padrão brasileiro.
-const currency = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "BRL" });
 
 // Aqui eu converto o valor numérico em um preço com símbolo e separadores locais.
 export function formatPrice(price: number) {

@@ -28,16 +28,16 @@ const kaushan = localFont({
 export const metadata: Metadata = {
   title: "ANZU STUDIO",
   // TODO: Revisar a descrição com o texto final da marca.
-  description: "Anzu studio. Cada coleção nasce de um artista da nossa curadoria. Uma galeria em movimento.",
+  description: "Anzu studio. Each collection begins with an artist we curate. A gallery in motion.",
 };
 
 // Aqui eu monto a estrutura comum de todas as páginas, com fontes, cabeçalho e área principal.
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${outfit.variable} ${kaushan.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${kaushan.variable}`}>
       <body>
         {/* Aqui eu ofereço um atalho para quem navega pelo teclado chegar direto ao conteúdo. */}
-        <a href="#conteudo" className="skip-link">Ir para o conteúdo</a>
+        <a href="#conteudo" className="skip-link">Skip to content</a>
         {/* Aqui eu compartilho os favoritos sem perder a seleção ao navegar entre páginas. */}
         <FavoritesProvider>
           <SiteHeader />

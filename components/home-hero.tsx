@@ -11,7 +11,7 @@ export function HomeHero() {
       <div className={styles.photo}>
         <Image
           src="/images/retrato-anzu-sol.png"
-          alt="Modelo de óculos coloridos e jaqueta azul, cercada de rabiscos sobre o céu."
+          alt="Model in colorful glasses and a blue jacket, surrounded by doodles against the sky."
           fill
           priority
           sizes="(min-width: 1440px) 720px, (min-width: 900px) 50vw, 100vw"
@@ -28,18 +28,18 @@ export function HomeHero() {
           className={styles.sticker}
         />
         {/* TODO: Validar o título e o texto de abertura com a marca. */}
-        <p className={styles.kicker}>Nossa curadoria</p>
+        <p className={styles.kicker}>Our curation</p>
         <h1 id="hero-title" className={styles.title}>
-          <span>Muitas </span>
-          <span>mãos<span className={styles.period}>.</span></span>
+          <span>Many </span>
+          <span>hands<span className={styles.period}>.</span></span>
         </h1>
-        <p className={styles.copy}>Cada coleção tem um artista por trás.</p>
+        <p className={styles.copy}>An artist behind every collection.</p>
       </div>
 
       {/* Aqui eu levo a pessoa até a coleção e destaco o botão com um contorno desenhado em SVG. */}
       <div className={styles.action}>
         <a href="#colecao" className={styles.collection}>
-          <span>Ver<br />coleção</span>
+          <span>View<br />collection</span>
           <span aria-hidden="true" className={styles.arrow}>↘</span>
         </a>
         <OrganicRing />

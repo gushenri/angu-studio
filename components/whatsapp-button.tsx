@@ -4,7 +4,7 @@ import { WhatsAppIcon } from "./graphics/whatsapp-icon";
 export function WhatsAppButton() {
   return (
     <a className="whatsapp-float" href="https://wa.me/5541999938312" target="_blank" rel="noopener noreferrer"
-      aria-label="Conversar com a Anzu studio pelo WhatsApp (abre em nova aba)" title="Vamos conversar pelo WhatsApp">
+      aria-label="Chat with Anzu studio on WhatsApp (opens in a new tab)" title="Let’s chat on WhatsApp">
       <WhatsAppIcon />
     </a>
   );

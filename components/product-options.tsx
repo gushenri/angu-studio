@@ -17,12 +17,12 @@ export function ProductOptions({ sizes }: { sizes: readonly string[] }) {
         // Aqui eu impeço o recarregamento da página e leio o tamanho marcado no formulário.
         event.preventDefault();
         const size = new FormData(event.currentTarget).get("tamanho");
-        if (typeof size === "string") setConfirmation(`Tamanho ${size} escolhido. Estamos em prévia: nenhuma compra foi feita.`);
+        if (typeof size === "string") setConfirmation(`Size ${size} selected. This is a preview: no purchase was made.`);
       }}
     >
       {/* Aqui eu agrupo os tamanhos; os botões de opção permitem escolher apenas um. */}
       <fieldset>
-        <legend className="eyebrow">Tamanho</legend>
+        <legend className="eyebrow">Size</legend>
         <div className="size-options">
           {sizes.map((size) => (
             <label key={size}>
@@ -33,7 +33,7 @@ export function ProductOptions({ sizes }: { sizes: readonly string[] }) {
           ))}
         </div>
       </fieldset>
-      <button type="submit" className="action-button">Vestir esta peça <HandArrow /></button>
+      <button type="submit" className="action-button">Wear this piece <HandArrow /></button>
       {/* Aqui eu anuncio a confirmação também para quem usa leitor de tela. */}
       <p role="status">{confirmation}</p>
     </form>

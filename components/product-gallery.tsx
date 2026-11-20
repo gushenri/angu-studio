@@ -12,7 +12,7 @@ export function ProductGallery({ photos }: { photos: readonly Photo[] }) {
   const [current, setCurrent] = useState(0);
 
   return (
-    <div className="product-gallery" aria-label="Galeria da peça" role="group">
+    <div className="product-gallery" aria-label="Product gallery" role="group">
       {/* Aqui eu mostro a foto escolhida e priorizo o carregamento da primeira imagem. */}
       <div className="gallery-main photo-frame" id="product-photo">
         <EditorialImage photo={photos[current]} sizes="(min-width: 1200px) 620px, (min-width: 760px) 55vw, 92vw" priority={current === 0} />
@@ -25,7 +25,7 @@ export function ProductGallery({ photos }: { photos: readonly Photo[] }) {
               type="button"
               key={photo.src}
               className="gallery-thumb"
-              aria-label={`Ver foto ${index + 1}: ${photo.alt}`}
+              aria-label={`View photo ${index + 1}: ${photo.alt}`}
               aria-pressed={index === current}
               aria-controls="product-photo"
               onClick={() => setCurrent(index)}

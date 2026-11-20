@@ -17,10 +17,10 @@ export function FavoriteButton({ slug, name, compact = false, onToggle }: {
   return (
     <button type="button" className={`favorite-button${compact ? " favorite-button-compact" : ""}`}
       disabled={!ready} aria-pressed={selected}
-      aria-label={selected ? `Remover ${name} dos favoritos` : `Guardar ${name} nos favoritos`}
+      aria-label={selected ? `Remove ${name} from favorites` : `Save ${name} to favorites`}
       onClick={() => { toggle(slug); onToggle?.(); }}>
       <HeaderIcon name="favorites" />
-      {!compact && <span>{selected ? "Guardamos esta peça" : "Guardar esta peça"}</span>}
+      {!compact && <span>{selected ? "Piece saved" : "Save this piece"}</span>}
     </button>
   );
 }

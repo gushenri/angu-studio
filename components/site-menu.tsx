@@ -11,10 +11,10 @@ import { MenuIcon } from "./graphics/menu-icon";
 
 // Aqui eu centralizo os nomes e endereços que aparecem no menu.
 const sections = [
-  { name: "Início", href: "/" },
-  { name: "Coleções", href: "/shop" },
-  { name: "Sobre", href: "/about" },
-  { name: "Contato", href: "/contact" },
+  { name: "Home", href: "/" },
+  { name: "Collections", href: "/shop" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 // Aqui eu controlo o menu lateral, os links de navegação e o foco ao abrir e fechar o painel.
@@ -83,12 +83,12 @@ export function SiteMenu() {
           <div className="flex items-center justify-between gap-4">
             <h2 id="menu-heading" className="menu-label">Menu</h2>
             <button type="button" autoFocus className="menu-toggle menu-close" onClick={closeMenu}>
-              Fechar
+              Close
               <span aria-hidden="true" className="text-xl leading-none">×</span>
             </button>
           </div>
 
-          <nav aria-label="Navegação principal" className="menu-nav">
+          <nav aria-label="Main navigation" className="menu-nav">
             <ul>
               {sections.map(({ name, href }) => {
                 // Aqui eu diferencio a página exata de uma subpágina, como o detalhe de uma peça.
